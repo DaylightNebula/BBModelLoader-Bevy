@@ -1,5 +1,5 @@
 /target
 /Cargo.lock
 /.idea/
-/assets/
+/http_assets/
 /start_python_http_server.bat
