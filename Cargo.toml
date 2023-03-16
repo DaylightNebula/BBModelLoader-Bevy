@@ -1,8 +1,11 @@
 [package]
-name = "BBModelLoader-Rust"
+name = "web_stream_engine_rust_bevy"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+bevy = "0.10.0"
+json = "0.12.4"
+uuid = "1.3.0"
