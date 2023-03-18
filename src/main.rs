@@ -1,3 +1,5 @@
+mod file_system;
+
 use bevy::app::AppExit;
 use bevy::prelude::*;
 use bevy::utils::tracing::Instrument;
@@ -8,9 +10,9 @@ fn main() {
         .add_state::<AppState>()
         .add_plugins(DefaultPlugins)
         .add_event::<AppExit>()
-        .add_system(global_init.in_schedule(OnEnter(AppState::Running)))
-        .add_system(global_update.in_set(OnUpdate(AppState::Running)))
-        .insert_resource(WinitSettings { return_from_run: true, ..default() })
+        .add_system(global_init)
+        .add_system(global_update)
+        .insert_resource(WinitSettings { return_from_run: true, ..default() }) // may cause problems on some platforms
         .run();
 
     global_exit();

@@ -9,7 +9,20 @@ Goals:
  - Allow users to write custom components or entity tasks or scene behaviours using javascript.
 
 Todolist:
-- [ ] .entity file
-  - [ ] Components
-  - [ ] Tasks
-  - [ ]
+- [ ] File System
+  - [ ] Download file asynchronously
+  - [ ] Function to add to queue to download queue
+    - [ ] Should start download if higher and current queues are empty
+    - [ ] When a download is over, get first item of the highest queue to download
+  - [ ] Save to cache
+  - [ ] Queues should be stored in a hashmap that references an enum
+- [ ] .scene files
+  - [ ] entities array
+    - [ ] If a string is given, load the path that it references
+    - [ ] If a json object is given, create an entity with that json
+  - [ ] uis array
+    - [ ] If a string is given, load the path that it references
+    - [ ] If a json object is given, create ui from that json
+  - [ ] behaviour array
+    - [ ] If a string is given, load the path that it references
+    - [ ] If a json object is given, create a behaviour script from that json
