@@ -10,7 +10,7 @@ Goals:
 
 Todolist:
 - [ ] File System
-  - [ ] Download file asynchronously
+  - [x] Download file asynchronously
   - [ ] Function to add to queue to download queue
     - [ ] Should start download if higher and current queues are empty
     - [ ] When a download is over, get first item of the highest queue to download
