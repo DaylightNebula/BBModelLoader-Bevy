@@ -33,7 +33,7 @@ pub fn download_file(internal_path: String, queue: FileSystemQueue, processor: F
     let path = Path::new(local_path.as_str());
     if path.exists() {
         println!("File {} already exists, skipping", internal_path);
-        processor.run(File::create(&path).expect("Could not load a file from a path that exists!"));
+        processor.run(&File::create(&path).expect("Could not load a file from a path that exists!"));
         return;
     }
 
@@ -89,7 +89,7 @@ fn download_file_async_from_queue(queue: FileSystemQueue) {
             println!("Successfully downloaded file {}", internal_path);
         });
 
-        processor.run(file);
+        processor.run(&file);
 
         // start the download of the first element in the highest queue
         for q2 in FileSystemQueue::iter() {
@@ -109,10 +109,10 @@ fn get_first_in_queue(queue: &FileSystemQueue) -> (String, FileSystemProcessor) 
 // file system queue
 #[derive(Eq, PartialEq, Hash, Clone, Copy, Debug)]
 pub enum FileSystemQueue {
-    ExtremeHigh,
-    High,
-    Medium,
-    Low
+    ExtremeHigh = 0,
+    High = 1,
+    Medium = 2,
+    Low = 3
 }
 impl FileSystemQueue {
     pub fn iter() -> Iter<'static, FileSystemQueue> {
@@ -122,12 +122,13 @@ impl FileSystemQueue {
 }
 
 // file system callback and processor
-pub type FileSystemCallback = fn(file: File);
+pub type FileSystemCallback = fn(file: &File);
+#[derive(Clone, Copy)]
 pub struct FileSystemProcessor {
     pub(crate) callback: FileSystemCallback
 }
 impl FileSystemProcessor {
-    fn run(&self, file: File) {
+    fn run(&self, file: &File) {
         (self.callback)(file);
     }
 }

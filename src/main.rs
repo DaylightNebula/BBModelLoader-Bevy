@@ -21,13 +21,13 @@ fn main() {
     global_exit();
 }
 
-fn file_downloaded(file: File) {
-    println!("Downloaded file {:?}", file);
-}
+fn file_downloaded(file: &File) {}
 
 fn global_init(commands: Commands) {
     download_file("main.scene".to_string(), FileSystemQueue::Low, FileSystemProcessor { callback: file_downloaded });
     download_file("test.scene".to_string(), FileSystemQueue::Low, FileSystemProcessor { callback: file_downloaded });
+    download_file("test_menu.eml".to_string(), FileSystemQueue::High, FileSystemProcessor { callback: file_downloaded });
+    download_file("test_menu.eml".to_string(), FileSystemQueue::High, FileSystemProcessor { callback: file_downloaded });
     download_file("test_menu.eml".to_string(), FileSystemQueue::High, FileSystemProcessor { callback: file_downloaded });
 }
 
