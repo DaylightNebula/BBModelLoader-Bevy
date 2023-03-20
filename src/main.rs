@@ -1,5 +1,6 @@
 mod file_system;
 
+use std::fs::File;
 use bevy::app::AppExit;
 use bevy::prelude::*;
 use bevy::utils::tracing::Instrument;
@@ -20,10 +21,14 @@ fn main() {
     global_exit();
 }
 
+fn file_downloaded(file: File) {
+    println!("Downloaded file {:?}", file);
+}
+
 fn global_init(commands: Commands) {
-    println!("Calling download!");
-    download_file_async("http://localhost:8000/main.scene".to_string());
-    println!("hi");
+    download_file("main.scene".to_string(), FileSystemQueue::Low, FileSystemProcessor { callback: file_downloaded });
+    download_file("test.scene".to_string(), FileSystemQueue::Low, FileSystemProcessor { callback: file_downloaded });
+    download_file("test_menu.eml".to_string(), FileSystemQueue::High, FileSystemProcessor { callback: file_downloaded });
 }
 
 fn global_update() {

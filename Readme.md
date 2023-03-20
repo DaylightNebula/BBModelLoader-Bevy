@@ -9,13 +9,13 @@ Goals:
  - Allow users to write custom components or entity tasks or scene behaviours using javascript.
 
 Todolist:
-- [ ] File System
+- [x] File System
   - [x] Download file asynchronously
-  - [ ] Function to add to queue to download queue
-    - [ ] Should start download if higher and current queues are empty
-    - [ ] When a download is over, get first item of the highest queue to download
-  - [ ] Save to cache
-  - [ ] Queues should be stored in a hashmap that references an enum
+  - [x] Function to add to queue to download queue
+    - [x] Should start download if higher and current queues are empty
+    - [x] When a download is over, get first item of the highest queue to download
+  - [x] Save to cache
+  - [x] Queues should be stored in a hashmap that references an enum
 - [ ] .scene files
   - [ ] entities array
     - [ ] If a string is given, load the path that it references
